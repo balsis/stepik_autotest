@@ -1,0 +1,10 @@
+pytest==8.3.5
+selene==2.0.0rc9
+selenium~=4.30.0
+python-dotenv==1.0.1
+allure-pytest==2.13.5
+Faker~=37.1.0
+urllib3~=2.3.0
+pytest-rerunfailures==14.0
+pytest-xdist==3.6.1
+
