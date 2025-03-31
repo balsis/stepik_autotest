@@ -91,7 +91,7 @@ pytest --executor=local
 
 ----
 ### Оповещение о результатах прогона тестов в Telegram
-> [Ссылка на канал в Telegram](https://t.me/litres_autotest)
+> [Ссылка на канал в Telegram](https://t.me/qa_guru_allure_reports)
 
 ![This is an image](https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/screenshots/tg.png)
 
