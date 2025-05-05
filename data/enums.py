@@ -9,3 +9,8 @@ class CourseOptionsCheckbox(Enum):
 class CourseOptionsAsserts(Enum):
     FREE = 'Бесплатно'
     CERTIFICATE = 'сертификат'
+
+
+class Language(Enum):
+    RU = 'RU'
+    EN = 'EN'
