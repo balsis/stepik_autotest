@@ -1,6 +1,9 @@
 import random
-from pytils.translit import RU_ALPHABET
+import secrets
+import string
+
 from faker import Faker
+from pytils.translit import RU_ALPHABET
 
 
 fake = Faker()
@@ -23,7 +26,18 @@ def random_cyrillic_string():
     return random_cyrillic
 
 
+def generate_client_id():
+    return fake.uuid4()
+
+
+def generate_secret_token(length=128):
+    alphabet = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(alphabet) for _ in range(length))
+
+
 wrong_email = generate_email()
 wrong_password = generate_password()
 invalid_email = generate_invalid_email()
 random_invalid_search_keyword = random_cyrillic_string()
+invalid_client_id = generate_client_id()
+invalid_client_secret = generate_secret_token()
