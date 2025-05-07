@@ -31,12 +31,12 @@ def setup_logger(module_name: str) -> logging.Logger:
 logger = setup_logger(__name__)
 
 
-def http_logger(max_body_length=300):
+def http_logger(max_body_length=2000):
     def decorator(func):
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(self, *args, **kwargs):
             base_url = project_config.base.base_url
-            response = func(*args, **kwargs)
+            response = func(self, *args, **kwargs)
             full_url = response.request.url
             if full_url.startswith(base_url):
                 path = full_url.removeprefix(base_url)
@@ -51,8 +51,9 @@ def http_logger(max_body_length=300):
                 body = response.text
 
             if len(body) > max_body_length:
-                truncated_body = body[:max_body_length] + ("\n"
-                                                           "<<...truncated output...>>")
+                truncated_body = body[:max_body_length] + ("\n<<...truncated output...>>")
+            else:
+                truncated_body = body
 
             http_request = f"\n{request_curl}\n\n"
             http_response = f"\n{status_line}\n{headers}\n\n{body}"
