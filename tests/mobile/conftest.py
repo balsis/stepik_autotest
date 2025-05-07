@@ -3,7 +3,7 @@ from appium import webdriver
 from appium.options.common import AppiumOptions
 from selene import browser
 
-from helpers.common import file_path
+from helpers.paths import file_path
 
 
 @pytest.fixture(scope = "function")
