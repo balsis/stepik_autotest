@@ -26,6 +26,7 @@ class Endpoints:
     def delete_enrollment(self, course_id: str):
         return self._get_request_url(f'/api/enrollments/{course_id}')
 
+
 class ApiClient:
     def __init__(self):
         self.endpoints = Endpoints()
@@ -47,7 +48,7 @@ class ApiClient:
 
     @http_logger()
     def get_user_courses(self) -> requests.Response:
-        return self.session.get(self.endpoints.get_user_courses())
+        return self.session.get(self.endpoints.user_courses(), verify = False)
 
     @http_logger()
     def enroll_to_course(self, course_id: int):
