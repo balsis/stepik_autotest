@@ -9,22 +9,25 @@ def api_client():
 
 
 @pytest.fixture
-def enroll_user_on_course(api_client):
-    course_id = 63085
-    api_client.enroll_to_course(course_id)
-    yield course_id
-
-
-@pytest.fixture
-def enroll_and_drop_out(api_client):
-    course_id = 63085
+def enroll_and_drop_out(api_client, request):
+    course_id = request.param
     api_client.enroll_to_course(course_id)
     yield course_id
     api_client.drop_out_course(course_id)
 
 
 @pytest.fixture
-def drop_out(api_client):
-    course_id = 63085
+def enroll_and_drop_out(api_client, request):
+    course_id = request.param  # Получаем параметр
+    api_client.enroll_to_course(course_id)
+    yield course_id
+    api_client.drop_out_course(course_id)
+
+
+@pytest.fixture
+def clear_user_courses_after(api_client):
     yield api_client
-    api_client.drop_out_course(course_id)
+    response = api_client.get_user_courses()
+    user_courses = response.json().get("user-courses", [])
+    for course in user_courses:
+        api_client.drop_out_course(course_id = course["course"])
