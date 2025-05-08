@@ -5,9 +5,9 @@ from data.data import UserData
 from stepik.ui import web_app
 
 
-@allure.parent_suite("Вход и выход из аккаунта")
+@allure.parent_suite("Web")
 @allure.suite("Авторизация")
-@allure.epic("Вход и выход из аккаунта")
+@allure.epic("Web")
 @allure.feature("Авторизация")
 class TestAuthorisation:
 

@@ -11,7 +11,7 @@ from helpers.web import ui_attach
 @allure.step("Запуск браузера")
 @pytest.fixture(scope = 'function', autouse = True)
 def browser_management(request):
-    executor = project_config.base.context
+    executor = project_config.base.context.lower()
     browser_version = project_config.web.browser_version
     window_width, window_height = project_config.web.window_size.split('x')
     timeout = project_config.web.web_timeout
@@ -22,7 +22,7 @@ def browser_management(request):
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument(
         '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36')
     browser.config.driver_options = options

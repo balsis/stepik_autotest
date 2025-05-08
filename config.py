@@ -1,6 +1,7 @@
 import os
 from typing import Literal
 
+from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -62,6 +63,7 @@ class MobileConfig(BaseSettings):
         if self.platformName == 'android':
             return UiAutomator2Options().load_capabilities(capabilities)
 
+
 class WebConfig(BaseSettings):
     model_config = SettingsConfigDict(env_file = file_path(".env.web"))
     web_timeout: float = Field(default = 15.0, description = "Default timeout")
@@ -79,4 +81,3 @@ class ProjectConfig(BaseSettings):
 
 
 project_config = ProjectConfig()
-project_config.mobile.app
