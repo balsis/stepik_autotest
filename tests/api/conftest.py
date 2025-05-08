@@ -18,7 +18,7 @@ def enroll_and_drop_out(api_client, request):
 
 @pytest.fixture
 def enroll_and_drop_out(api_client, request):
-    course_id = request.param  # Получаем параметр
+    course_id = request.param
     api_client.enroll_to_course(course_id)
     yield course_id
     api_client.drop_out_course(course_id)

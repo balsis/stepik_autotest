@@ -3,6 +3,7 @@ from appium import webdriver
 from appium.options.common import AppiumOptions
 from selene import browser
 
+from config import project_config
 from helpers.paths import file_path
 
 
@@ -17,6 +18,6 @@ def android_management():
     }
     options = AppiumOptions().load_capabilities(caps)
     browser.config.driver = webdriver.Remote("http://127.0.0.1:4723", options = options)
-    browser.config.timeout = 12
+    browser.config.timeout = project_config.mobile.mobile_timeout
     yield browser
     browser.quit()

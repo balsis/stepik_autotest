@@ -1,3 +1,4 @@
+import os
 from typing import Literal
 
 from dotenv import load_dotenv
@@ -31,11 +32,14 @@ class Credentials(BaseSettings):
 
 
 class MobileConfig(BaseSettings):
-    timeout: float = Field(default = 20.0, description = "Default timeout")
+    model_config = SettingsConfigDict(
+        env_file = file_path(f".env.mobile.{os.getenv('context', 'local')}")
+    )
+    mobile_timeout: float = Field(default = 20.0, description = "Default timeout")
     app: str
+    platformName: str = ''
     platformVersion: str = ''
     deviceName: str = ''
-    udid: str = ''
     remote_url: str = ''
 
 
@@ -48,14 +52,12 @@ class WebConfig(BaseSettings):
     selenoid_url: str = Field(default = "selenoid.autotests.cloud", description = "Default Selenoid URL")
 
 
-class APIConfig(BaseSettings):
-    model_config = SettingsConfigDict(env_file = file_path(".env.api"))
-
-
 class ProjectConfig(BaseSettings):
     base: BaseConfig = BaseConfig()
-    web: WebConfig = WebConfig()
     credentials: Credentials = Credentials()
+    web: WebConfig = WebConfig()
+    mobile: MobileConfig = MobileConfig()
 
 
 project_config = ProjectConfig()
+project_config.mobile.app
