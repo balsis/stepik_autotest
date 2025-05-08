@@ -42,6 +42,25 @@ class MobileConfig(BaseSettings):
     deviceName: str = ''
     remote_url: str = ''
 
+    def get_options(self):
+        capabilities = {
+            'platformVersion': self.platformVersion,
+            'deviceName': self.deviceName,
+            'app': project_config.mobile.app if project_config.mobile.app.startswith('bs://') else file_path(self.app),
+            'appWaitActivity': "org.wikipedia.*"
+        }
+
+        if self.context == 'bstack':
+            capabilities['bstack:options'] = {
+                'projectName': 'Mobile project',
+                'buildName': 'browserstack-build-1',
+                'sessionName': f'{self.platformName} test',
+                'userName': self.bstack_userName,
+                'accessKey': self.bstack_accessKey,
+            }
+
+        if self.platformName == 'android':
+            return UiAutomator2Options().load_capabilities(capabilities)
 
 class WebConfig(BaseSettings):
     model_config = SettingsConfigDict(env_file = file_path(".env.web"))

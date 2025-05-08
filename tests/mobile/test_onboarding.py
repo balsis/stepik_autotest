@@ -1,4 +1,6 @@
-from selene import browser, have, be
+from selene import have
+
+from stepik.mobile import android_app
 
 
 class TestOnboarding:
@@ -25,61 +27,31 @@ class TestOnboarding:
         android_management.element(("id", "org.stepic.droid:id/onboardingPageAction")).click()
 
     def test_skip_onboarding(self, android_management):
-        android_management.element(("id", "org.stepic.droid:id/closeOnboarding")).click()
-        android_management.element(("id", "org.stepic.droid:id/dismissButton")).should(be.clickable).click()
-        android_management.element(("id", "org.stepic.droid:id/catalog")).should(be.selected)
+        android_app.onboarding_page.skip_onboarding()
 
-
-onboarding_pages = {
-    "first_page": {
-        "title": "Choose",
-        "subtitle": "Browse through all the courses available on Stepik and choose what suits you",
-    },
-    "second_page": {
-        "title": "Download",
-        "subtitle": "Watch the video lectures online or download them for access without a connection",
-    },
-    "third_page": {
-        "title": "Solve",
-        "subtitle": "Complete the assignments using your mobile device",
-    },
-    "fourth_page": {
-        "title": "Complete",
-        "subtitle": "Set up reminders to study regularly and complete the courses faster",
-    },
-}
-
-
-def check_onboarding_texts(title: str, subtitle: str):
-    browser.element(("id", "org.stepic.droid:id/onboardingPageTitle")).should(have.text(title))
-    browser.element(("id", "org.stepic.droid:id/onboardingPageSubtitle")).should(have.text(subtitle))
-
-
-def go_to_next_onboarding_page():
-    browser.element(("id", "org.stepic.droid:id/onboardingPageAction")).click()
 
 
 def test_onboarding_pages(android_management):
-    check_onboarding_texts(
-        title = onboarding_pages["first_page"]["title"],
-        subtitle = onboarding_pages["first_page"]["subtitle"]
+    android_app.onboarding_page.check_onboarding_texts(
+        title = android_app.onboarding_page.onboarding_pages_text["first_page"]["title"],
+        subtitle = android_app.onboarding_page.onboarding_pages_text["first_page"]["subtitle"]
     )
-    go_to_next_onboarding_page()
+    android_app.onboarding_page.go_to_next_onboarding_page()
 
-    check_onboarding_texts(
-        title = onboarding_pages["second_page"]["title"],
-        subtitle = onboarding_pages["second_page"]["subtitle"]
+    android_app.onboarding_page.check_onboarding_texts(
+        title = android_app.onboarding_page.onboarding_pages_text["second_page"]["title"],
+        subtitle = android_app.onboarding_page.onboarding_pages_text["second_page"]["subtitle"]
     )
-    go_to_next_onboarding_page()
+    android_app.onboarding_page.go_to_next_onboarding_page()
 
-    check_onboarding_texts(
-        title = onboarding_pages["third_page"]["title"],
-        subtitle = onboarding_pages["third_page"]["subtitle"]
+    android_app.onboarding_page.check_onboarding_texts(
+        title = android_app.onboarding_page.onboarding_pages_text["third_page"]["title"],
+        subtitle = android_app.onboarding_page.onboarding_pages_text["third_page"]["subtitle"]
     )
-    go_to_next_onboarding_page()
+    android_app.onboarding_page.go_to_next_onboarding_page()
 
-    check_onboarding_texts(
-        title = onboarding_pages["fourth_page"]["title"],
-        subtitle = onboarding_pages["fourth_page"]["subtitle"]
+    android_app.onboarding_page.check_onboarding_texts(
+        title = android_app.onboarding_page.onboarding_pages_text["fourth_page"]["title"],
+        subtitle = android_app.onboarding_page.onboarding_pages_text["fourth_page"]["subtitle"]
     )
-    go_to_next_onboarding_page()
+    android_app.onboarding_page.go_to_next_onboarding_page()
