@@ -124,5 +124,7 @@ CONTEXT=local pytest
 ![This is an image](https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/screenshots/tg.png)
 
 ----
-### Пример видео прохождения ui-автотеста
+### Пример видео прохождения UI автотеста
 ![autotest_gif](https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/screenshots/video.gif)
+### Пример видео прохождения мобильного автотеста
+![autotest_gif](https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/screenshots/mobile.gif)
