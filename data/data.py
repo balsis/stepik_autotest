@@ -12,3 +12,8 @@ class UserData:
     STEPIK_PASSWORD = project_config.credentials.stepik_password.get_secret_value()
     CLIENT_ID = project_config.credentials.client_id.get_secret_value()
     CLIENT_SECRET = project_config.credentials.client_secret.get_secret_value()
+
+
+class BstackData:
+    BSTACK_USERNAME = project_config.credentials.bstack_username.get_secret_value()
+    BSTACK_ACCESS_KEY = project_config.credentials.bstack_accesskey.get_secret_value()

@@ -2,19 +2,16 @@ import os
 from typing import Literal
 
 from appium.options.android import UiAutomator2Options
-from dotenv import load_dotenv
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from helpers.paths import file_path
 
 
-load_dotenv()
-
-
 class BaseConfig(BaseSettings):
     model_config = SettingsConfigDict(env_file = file_path(".env.base"))
-    context: Literal['LOCAL', 'REMOTE'] = Field(default = 'REMOTE', description = "Execution context: local or CI")
+    suite: Literal['all', 'web', 'mobile', 'api'] = Field(default = 'all', description = "Test suite: All tests or only mobile/api/web test")
+    context: Literal['local', 'remote'] = Field(default = 'REMOTE', description = "Execution context: local or CI")
     base_url: str = Field(default = 'https://stepik.org', description = "Base URL for API and Web testing")
     log_level: Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'] = Field(default = 'DEBUG', description = "Logs level")
 
@@ -28,13 +25,13 @@ class Credentials(BaseSettings):
     selenoid_pass: SecretStr
     stepik_email: SecretStr
     stepik_password: SecretStr
-    bstack_userName: SecretStr
-    bstack_accessKey: SecretStr
+    bstack_username: SecretStr
+    bstack_accesskey: SecretStr
 
 
 class MobileConfig(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file = file_path(f".env.mobile.{os.getenv('context', 'local')}")
+        env_file = file_path(f".env.mobile.{os.getenv('context', 'remote')}")
     )
     mobile_timeout: float = Field(default = 20.0, description = "Default timeout")
     app: str
@@ -48,20 +45,19 @@ class MobileConfig(BaseSettings):
             'platformVersion': self.platformVersion,
             'deviceName': self.deviceName,
             'app': project_config.mobile.app if project_config.mobile.app.startswith('bs://') else file_path(self.app),
-            'appWaitActivity': "org.wikipedia.*"
+            'autoGrantPermissions': True
         }
 
-        if self.context == 'bstack':
+        if project_config.base.context == 'remote':
             capabilities['bstack:options'] = {
                 'projectName': 'Mobile project',
-                'buildName': 'browserstack-build-1',
+                'buildName': 'stepik_autotest',
                 'sessionName': f'{self.platformName} test',
-                'userName': self.bstack_userName,
-                'accessKey': self.bstack_accessKey,
+                'userName': project_config.credentials.bstack_username.get_secret_value(),
+                'accessKey': project_config.credentials.bstack_accesskey.get_secret_value()
             }
 
-        if self.platformName == 'android':
-            return UiAutomator2Options().load_capabilities(capabilities)
+        return UiAutomator2Options().load_capabilities(capabilities)
 
 
 class WebConfig(BaseSettings):

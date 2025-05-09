@@ -1,23 +1,26 @@
+import allure
 import pytest
 from appium import webdriver
-from appium.options.common import AppiumOptions
 from selene import browser
 
 from config import project_config
-from helpers.paths import file_path
+from helpers.mobile import mobile_attach
 
 
 @pytest.fixture(scope = "function")
 def android_management():
-    caps = {
-        "platformName": "Android",
-        "automationName": "UIAutomator2",
-        "deviceName": "emulator-5554",
-        "app": file_path("stepik.apk"),
-        "autoGrantPermissions": True
-    }
-    options = AppiumOptions().load_capabilities(caps)
-    browser.config.driver = webdriver.Remote("http://127.0.0.1:4723", options = options)
+    options = project_config.mobile.get_options()
+    with allure.step('init app session'):
+        browser.config.driver = webdriver.Remote(
+            project_config.mobile.remote_url,
+            options = options
+        )
     browser.config.timeout = project_config.mobile.mobile_timeout
     yield browser
-    browser.quit()
+    mobile_attach.add_screenshot()
+    mobile_attach.add_page_source_xml()
+    session_id = browser.driver.session_id
+    with allure.step('tear down app session'):
+        browser.quit()
+    if project_config.base.context == 'remote':
+        mobile_attach.add_bstack_video(session_id)

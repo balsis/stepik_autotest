@@ -17,7 +17,7 @@ def test_check_main_categories_in_catalog(android_management, language, categori
     android_app.sign_in_page.skip_authorisation()
     android_app.navbar.select_catalog_view()
     android_app.catalog_page.select_language(language = language)
-    android_app.catalog_page.check_main_categories_in_catalog(*categories, max_swipes = 6)
+    android_app.catalog_page.check_main_categories_in_catalog(*categories, max_swipes = 7)
 
 
 @pytest.mark.parametrize(
