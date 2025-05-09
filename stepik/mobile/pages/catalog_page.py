@@ -7,6 +7,7 @@ from helpers.mobile.gestures import Gestures
 
 
 class CatalogPage(Gestures):
+    @allure.step("Выбор языка")
     def select_language(self, language: Language):
         if language == Language.EN:
             android_app.element(by_id('languageEn')).click()
@@ -16,6 +17,7 @@ class CatalogPage(Gestures):
             android_app.element(by_id('languageRu')).should(have.attribute('checked').value('true'))
         return self
 
+    @allure.step("Проверка наличия основных категорий в каталоге")
     def check_main_categories_in_catalog(self, *categories: str, max_swipes: int = 5) -> None:
         for category in categories:
             self.find_text_with_scrolling(text = category, max_swipes = max_swipes)

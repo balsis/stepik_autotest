@@ -1,3 +1,4 @@
+import allure
 from selene import browser as android_app, have
 
 from helpers.mobile.custom_locator import by_id
@@ -23,15 +24,18 @@ class OnboardingPage:
         },
     }
 
+    @allure.step("Проверка текста на странице онбординга")
     def check_onboarding_texts(self, title: str, subtitle: str):
         android_app.element(by_id("onboardingPageTitle")).should(have.text(title))
         android_app.element(by_id("onboardingPageSubtitle")).should(have.text(subtitle))
         return self
 
+    @allure.step("Переход на следующую страницу онбординга")
     def go_to_next_onboarding_page(self):
         android_app.element(by_id("onboardingPageAction")).click()
         return self
 
+    @allure.step("Пропуск онбординга")
     def skip_onboarding(self):
         android_app.element(by_id("closeOnboarding")).click()
         # android_app.element(by_id("dismissButton")).click()
