@@ -3,10 +3,10 @@ import allure
 from stepik.ui import web_app
 
 
-@allure.parent_suite("Вход и выход из аккаунта")
-@allure.suite("Выход из аккаунта")
-@allure.epic("Вход и выход из аккаунта")
-@allure.feature("Выход из аккаунта")
+@allure.parent_suite("Web")
+@allure.suite("Выход из аккаунта на веб-сайте")
+@allure.epic("Web")
+@allure.feature("Выход из аккаунта на веб-сайте")
 class TestLogout:
 
     @allure.sub_suite("Успешный выход")

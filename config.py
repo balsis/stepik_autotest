@@ -10,7 +10,6 @@ from helpers.paths import file_path
 
 class BaseConfig(BaseSettings):
     model_config = SettingsConfigDict(env_file = file_path(".env.base"))
-    suite: Literal['all', 'web', 'mobile', 'api'] = Field(default = 'all', description = "Test suite: All tests or only mobile/api/web test")
     context: Literal['local', 'remote'] = Field(default = 'REMOTE', description = "Execution context: local or CI")
     base_url: str = Field(default = 'https://stepik.org', description = "Base URL for API and Web testing")
     log_level: Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'] = Field(default = 'DEBUG', description = "Logs level")

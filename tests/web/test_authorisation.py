@@ -6,9 +6,9 @@ from stepik.ui import web_app
 
 
 @allure.parent_suite("Web")
-@allure.suite("Авторизация")
+@allure.suite("Авторизация на веб-сайте")
 @allure.epic("Web")
-@allure.feature("Авторизация")
+@allure.feature("Авторизация на веб-сайте")
 class TestAuthorisation:
 
     @allure.sub_suite("Авторизация с валидными данными")

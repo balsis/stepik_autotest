@@ -4,22 +4,22 @@ from data import fake
 from stepik.ui import web_app
 
 
-@allure.parent_suite("Поиск")
-@allure.suite("Поиск из навигационной панели")
-@allure.epic("Поиск")
-@allure.feature("Поиск из навигационной панели")
+@allure.parent_suite("Web")
+@allure.suite("Поиск на веб-сайте")
+@allure.epic("Web")
+@allure.feature("Поиск на веб-сайте")
 class TestNavbarSearch:
 
-    @allure.sub_suite("Поиск курса по названию")
-    @allure.story("Поиск курса по названию")
+    @allure.sub_suite("Поиск из навигационной панели")
+    @allure.story("Поиск из навигационной панели")
     @allure.title("Поиск курса с валидным названием из навигационной панели")
     def test_search_course_with_valid_keyword_from_navbar(self):
         web_app.catalog_page.open()
         web_app.navbar.find_course(course_name = "Инди-курс программирования на Python")
         web_app.catalog_search_page.should_have_course_with_title(title = "Инди-курс программирования на Python")
 
-    @allure.sub_suite("Поиск курса по названию")
-    @allure.story("Поиск курса по названию")
+    @allure.sub_suite("Поиск из навигационной панели")
+    @allure.story("Поиск из навигационной панели")
     @allure.title("Поиск курса с невалидным названием из навигационной панели")
     def test_search_course_with_invalid_keyword_from_navbar(self):
         web_app.catalog_page.open()
@@ -27,14 +27,14 @@ class TestNavbarSearch:
         web_app.catalog_search_page.should_have_nothing_found_message(value = fake.random_invalid_search_keyword)
 
 
-@allure.parent_suite("Поиск")
-@allure.suite("Поиск в Каталоге")
-@allure.epic("Поиск")
-@allure.feature("Поиск в Каталоге")
+@allure.parent_suite("Web")
+@allure.suite("Поиск на веб-сайте")
+@allure.epic("Web")
+@allure.feature("Поиск на веб-сайте")
 class TestCatalogSearch:
 
-    @allure.sub_suite("Поиск курса по названию")
-    @allure.story("Поиск курса по названию")
+    @allure.sub_suite("Поиск курса в Каталоге")
+    @allure.story("Поиск курса в Каталоге")
     @allure.title("Поиск курса с валидным названием в Каталоге")
     def test_search_course_with_valid_keyword_from_catalog(self):
         web_app.catalog_page.open()
@@ -42,8 +42,8 @@ class TestCatalogSearch:
         web_app.catalog_page.submit_search_button()
         web_app.catalog_search_page.should_have_course_with_title(title = "Инди-курс программирования на Python")
 
-    @allure.sub_suite("Поиск курсов по фильтрам")
-    @allure.story("Поиск курсов по фильтрам")
+    @allure.sub_suite("Поиск курса в Каталоге")
+    @allure.story("Поиск курса в Каталоге")
     @allure.title("Поиск в Каталоге бесплатных курсов")
     def test_search_free_courses(self):
         web_app.catalog_page.open()
@@ -51,8 +51,8 @@ class TestCatalogSearch:
         web_app.catalog_page.submit_search_button()
         web_app.catalog_search_page.all_courses_should_have_free_prices()
 
-    @allure.sub_suite("Поиск курсов по фильтрам")
-    @allure.story("Поиск курсов по фильтрам")
+    @allure.sub_suite("Поиск курса в Каталоге")
+    @allure.story("Поиск курса в Каталоге")
     @allure.title("Поиск в Каталоге курсов с сертификатами")
     def test_search_courses_with_certs(self):
         web_app.catalog_page.open()
@@ -60,8 +60,8 @@ class TestCatalogSearch:
         web_app.catalog_page.submit_search_button()
         web_app.catalog_search_page.all_courses_should_have_certificate()
 
-    @allure.sub_suite("Поиск курса по названию")
-    @allure.story("Поиск курса по названию")
+    @allure.sub_suite("Поиск курса в Каталоге")
+    @allure.story("Поиск курса в Каталоге")
     @allure.title("Поиск курса с невалидным названием в Каталоге")
     def test_search_course_with_invalid_keyword_from_catalog(self):
         web_app.catalog_page.open()
