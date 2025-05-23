@@ -6,6 +6,7 @@ from selenium import webdriver
 from config import project_config
 from data.credentials_data import SelenoidData, UserData
 from helpers.web import ui_attach
+from helpers.web.auth_helper import AuthHelper
 
 
 @allure.step("Запуск браузера")
@@ -59,7 +60,6 @@ def browser_management(request):
 
 @pytest.fixture(scope = "function")
 def authorized_user(browser_management):
-    from helpers.web.auth_helper import AuthHelper
     cookies = AuthHelper().login(email = UserData.STEPIK_EMAIL, password = UserData.STEPIK_PASSWORD)
     csrftoken, sessionid = cookies.get('csrftoken'), cookies.get('sessionid')
     browser.open('/').with_(timeout = 20)
