@@ -25,8 +25,6 @@ class TestNavbarSearch:
 
 @allure.parent_suite("Web")
 @allure.suite("Поиск на веб-сайте")
-@allure.epic("Web")
-@allure.feature("Поиск на веб-сайте")
 class TestCatalogSearch:
 
     @allure.sub_suite("Поиск курса в Каталоге")
