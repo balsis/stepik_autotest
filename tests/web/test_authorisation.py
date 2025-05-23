@@ -7,12 +7,9 @@ from stepik.ui import web_app
 
 @allure.parent_suite("Web")
 @allure.suite("Авторизация на веб-сайте")
-@allure.epic("Web")
-@allure.feature("Авторизация на веб-сайте")
 class TestAuthorization:
 
     @allure.sub_suite("Авторизация с валидными данными")
-    @allure.story("Авторизация с валидными данными")
     @allure.title("Авторизация с валидным email и паролем")
     def test_login_with_valid_email_password(self):
         web_app.catalog_page.open()
@@ -27,7 +24,6 @@ class TestAuthorization:
         web_app.navbar.login_button_should_be_absent()
 
     @allure.sub_suite("Авторизация с невалидными данными")
-    @allure.story("Авторизация с невалидными данными")
     @allure.title("Авторизация с невалидными email и паролем")
     def test_login_with_invalid_email_password(self):
         web_app.catalog_page.open()

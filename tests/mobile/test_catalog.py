@@ -7,8 +7,6 @@ from stepik.mobile import android_app
 
 @allure.parent_suite("Mobile")
 @allure.suite("Каталог на мобильном устройстве")
-@allure.epic("Mobile")
-@allure.feature("Каталог на мобильном устройстве")
 class TestCatalog:
 
     @pytest.mark.parametrize(
@@ -20,7 +18,6 @@ class TestCatalog:
         ids = ['Catalog categories in English', 'Catalog categories in Russian']
     )
     @allure.sub_suite("Категории курсов")
-    @allure.story("Категории курсов")
     @allure.title("Проверка основных категорий в каталоге")
     def test_check_main_categories_in_catalog(self, android_management, language, categories):
         android_app.onboarding_page.skip_onboarding()
@@ -38,7 +35,6 @@ class TestCatalog:
         ids = ['English course name', 'Russian course name']
     )
     @allure.sub_suite("Поиск в каталоге")
-    @allure.story("Поиск в каталоге")
     @allure.title("Поиск курса по наименованию")
     def test_find_course_by_name(self, android_management, language, course_name):
         android_app.onboarding_page.skip_onboarding()

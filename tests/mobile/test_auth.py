@@ -7,11 +7,8 @@ from stepik.mobile import android_app
 
 @allure.parent_suite("Mobile")
 @allure.suite("Авторизация на мобильном устройстве")
-@allure.epic("Mobile")
-@allure.feature("Авторизация на мобильном устройстве")
 class TestAuthorisation:
     @allure.sub_suite("Авторизация с валидными данными")
-    @allure.story("Авторизация с валидными данными")
     @allure.title("Авторизация с валидным email и паролем")
     def test_login_with_email_and_password(self, android_management):
         android_app.onboarding_page.skip_onboarding()
@@ -23,7 +20,6 @@ class TestAuthorisation:
         android_app.profile_page.validate_user_name()
 
     @allure.sub_suite("Авторизация с невалидными данными")
-    @allure.story("Авторизация с невалидными данными")
     @allure.title("Авторизация с невалидными email и паролем")
     def test_login_with_invalid_email_password(self, android_management):
         android_app.onboarding_page.skip_onboarding()

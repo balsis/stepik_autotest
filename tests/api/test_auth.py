@@ -9,12 +9,9 @@ from tests.api.conftest import api_client
 
 @allure.parent_suite("API")
 @allure.suite("API авторизация через OAuth 2.0")
-@allure.epic("API")
-@allure.feature("API авторизация через OAuth 2.0")
 class TestAuthApi:
 
     @allure.sub_suite("Авторизация с валидными данными")
-    @allure.story("Авторизация с валидными данными")
     @allure.title('Успешная авторизация через OAuth 2.0 для зарегистрированного пользователя')
     def test_successful_authorization_with_oauth2_by_registered_user(self, api_client):
         response = api_client.oauth2_request()
@@ -22,7 +19,6 @@ class TestAuthApi:
         Token.model_validate(response.json())
 
     @allure.sub_suite("Авторизация с невалидными данными")
-    @allure.story("Авторизация с невалидными данными")
     @allure.title('Авторизация через OAuth 2.0 с некорректными учетными данными')
     @pytest.mark.parametrize(
         "client_id, client_secret",

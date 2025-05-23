@@ -5,12 +5,9 @@ from stepik.ui import web_app
 
 @allure.parent_suite("Web")
 @allure.suite("Выход из аккаунта на веб-сайте")
-@allure.epic("Web")
-@allure.feature("Выход из аккаунта на веб-сайте")
 class TestLogout:
 
     @allure.sub_suite("Успешный выход")
-    @allure.story("Выход из аккаунта")
     @allure.title("Успешный выход из аккаунта")
     def test_success_logout_from_account(self, authorized_user):
         web_app.navbar.open_profile_dropdown_menu()
@@ -21,8 +18,7 @@ class TestLogout:
 
         web_app.auth_widget.widget_should_be_visible()
 
-    @allure.sub_suite("Отмена выхода из аккаунта")
-    @allure.story("Отмена выхода из аккаунта")
+    @allure.sub_suite("Неуспешный выход")
     @allure.title("Отмена выхода из аккаунта")
     def test_cancel_logout_from_account(self, authorized_user):
         web_app.navbar.open_profile_dropdown_menu()
