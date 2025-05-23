@@ -1,7 +1,7 @@
 import allure
 from selene import browser as android_app, have
 
-from helpers.mobile.custom_locator import by_id
+from stepik.mobile.custom_locator import by_id
 
 
 class ProfilePage:

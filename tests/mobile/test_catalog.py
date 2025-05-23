@@ -24,7 +24,7 @@ class TestCatalog:
     @allure.title("Проверка основных категорий в каталоге")
     def test_check_main_categories_in_catalog(self, android_management, language, categories):
         android_app.onboarding_page.skip_onboarding()
-        android_app.sign_in_page.skip_authorisation()
+        android_app.sign_in_page.skip_authorization()
         android_app.navbar.select_catalog_view()
         android_app.catalog_page.select_language(language = language)
         android_app.catalog_page.check_main_categories_in_catalog(*categories, max_swipes = 7)
@@ -42,7 +42,7 @@ class TestCatalog:
     @allure.title("Поиск курса по наименованию")
     def test_find_course_by_name(self, android_management, language, course_name):
         android_app.onboarding_page.skip_onboarding()
-        android_app.sign_in_page.skip_authorisation()
+        android_app.sign_in_page.skip_authorization()
         android_app.navbar.select_catalog_view()
         android_app.catalog_page.select_language(language = language)
         android_app.catalog_page.fill_course_name(course_name = course_name)

@@ -1,7 +1,7 @@
 import allure
 
 from data import fake
-from data.data import UserData
+from data.credentials_data import UserData
 from stepik.mobile import android_app
 
 

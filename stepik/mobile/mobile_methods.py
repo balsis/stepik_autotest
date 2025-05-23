@@ -1,7 +1,7 @@
 from selene import browser as android_app, be
 
 
-class Gestures:
+class MobileMethods:
     @property
     def window_size(self):
         width = android_app.driver.get_window_size()['width']

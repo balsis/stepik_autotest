@@ -1,7 +1,7 @@
 import allure
 
 from data import fake
-from data.data import UserData
+from data.credentials_data import UserData
 from stepik.ui import web_app
 
 
@@ -9,7 +9,7 @@ from stepik.ui import web_app
 @allure.suite("Авторизация на веб-сайте")
 @allure.epic("Web")
 @allure.feature("Авторизация на веб-сайте")
-class TestAuthorisation:
+class TestAuthorization:
 
     @allure.sub_suite("Авторизация с валидными данными")
     @allure.story("Авторизация с валидными данными")

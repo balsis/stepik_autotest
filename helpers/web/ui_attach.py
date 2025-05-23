@@ -1,7 +1,7 @@
 import allure
 from allure_commons.types import AttachmentType
 
-from data.data import SelenoidData
+from data.credentials_data import SelenoidData
 
 
 def add_screenshot(browser):

@@ -4,7 +4,7 @@ from selene import browser
 from selenium import webdriver
 
 from config import project_config
-from data.data import SelenoidData, UserData
+from data.credentials_data import SelenoidData, UserData
 from helpers.web import ui_attach
 
 

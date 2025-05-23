@@ -1,7 +1,7 @@
 import allure
 from selene import browser as android_app, have
 
-from helpers.mobile.custom_locator import by_id
+from stepik.mobile.custom_locator import by_id
 
 
 class OnboardingPage:
@@ -38,6 +38,4 @@ class OnboardingPage:
     @allure.step("Пропуск онбординга")
     def skip_onboarding(self):
         android_app.element(by_id("closeOnboarding")).click()
-        # android_app.element(by_id("dismissButton")).click()
-        # android_app.element(by_id('catalog')).should(be.selected)
         return self

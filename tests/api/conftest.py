@@ -1,6 +1,6 @@
 import pytest
 
-from stepik.api.client import ApiClient
+from stepik.api.api_client import ApiClient
 
 
 @pytest.fixture(scope = "session")

@@ -4,7 +4,7 @@ from requests import Session
 from requests.auth import HTTPBasicAuth
 
 from config import project_config
-from data.data import UserData
+from data.credentials_data import UserData
 from helpers.logger import http_logger
 
 

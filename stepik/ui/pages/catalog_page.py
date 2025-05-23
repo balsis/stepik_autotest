@@ -2,7 +2,7 @@ import allure
 from selene import browser, be, have
 
 from data.enums import CourseOptionsCheckbox
-from helpers.web.utils import page_is_loaded
+from stepik.ui.utils import page_is_loaded
 
 
 class CatalogPage:

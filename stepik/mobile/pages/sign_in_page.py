@@ -1,7 +1,7 @@
 import allure
 from selene import browser as android_app, have, be
 
-from helpers.mobile.custom_locator import by_id
+from stepik.mobile.custom_locator import by_id
 
 
 class SignInPage:
@@ -11,7 +11,7 @@ class SignInPage:
         android_app.element(by_id('signInText')).should(have.text('Sign In with social accounts'))
 
     @allure.step("Пропуск авторизации")
-    def skip_authorisation(self):
+    def skip_authorization(self):
         android_app.element(by_id('dismissButton')).should(be.clickable).click()
         return self
 

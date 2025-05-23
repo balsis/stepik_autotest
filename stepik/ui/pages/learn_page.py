@@ -1,7 +1,7 @@
 import allure
 from selene import browser, be
 
-from helpers.web.utils import page_is_loaded
+from stepik.ui.utils import page_is_loaded
 
 
 class LearnPage:

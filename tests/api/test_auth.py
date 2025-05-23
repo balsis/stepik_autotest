@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from data import fake
-from data.data import UserData
+from data.credentials_data import UserData
 from stepik.api.models.token import Token
 from tests.api.conftest import api_client
 

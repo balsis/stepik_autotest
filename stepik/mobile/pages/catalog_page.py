@@ -2,11 +2,11 @@ import allure
 from selene import browser as android_app, have
 
 from data.enums import Language
-from helpers.mobile.custom_locator import by_id
-from helpers.mobile.gestures import Gestures
+from stepik.mobile.custom_locator import by_id
+from stepik.mobile.mobile_methods import MobileMethods
 
 
-class CatalogPage(Gestures):
+class CatalogPage(MobileMethods):
     @allure.step("Выбор языка")
     def select_language(self, language: Language):
         if language == Language.EN:
