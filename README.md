@@ -2,8 +2,8 @@
 <img src="https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/screenshots/stepik_main_page.png" width="800"> 
 
 > Stepik — многофункциональная образовательная платформа и конструктор
-онлайн-курсов. Цель платформы — сделать образование открытым и удобным.
-Размещено более 700 онлайн-курсов.
+> онлайн-курсов. Цель платформы — сделать образование открытым и удобным.
+> Размещено более 700 онлайн-курсов.
 
 ### Проект реализован с использованием:
 <img src="https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/icons/allure_report.png" width="50"> <img src="https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/icons/allure_testops.png" width="50"> <img src="https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/icons/jenkins.png" width="50"> <img src="https://raw.githubusercontent.com/balsis/media/refs/heads/main/stepik_autotest/icons/jira.png" width="50"> 
@@ -54,18 +54,20 @@
 
 
 ### Локальный запуск
-> Перед запуском в корне проекта создать файл .env.credentials с содержимым:
+
+1) Перед запуском cкопируйте .env.credentials.example, переименуйте в .env.credentials и заполните своими данными:
 ```
-SELENOID_LOGIN=user1
-SELENOID_PASS=1234
-STEPIK_EMAIL=stepik.autotest@gmail.com
-STEPIK_PASSWORD=stepik123@
-CLIENT_ID=thRRjURXzx7qS7vmkUtlLibX4bVW90LZFh4BIpVT
-CLIENT_SECRET=jD2ANEvLxJ1F3zWQIntCmj21aVqWaJaryHVNmKbuVTqbUiUzAFeMaDVuZznh3vzX88bTFkdeLZjQE1aJgt2h4w9ffz79tNfs1pin0EQaGKMqaRbWZ8NU2kVUg2EsE593
-BSTACK_USERNAME=arturbalsis_sfAx4T
-BSTACK_ACCESSKEY=qbwzaSozVDbpUkzj8tvL
+SELENOID_LOGIN=your_login_here
+SELENOID_PASS=your_password_here
+STEPIK_EMAIL=your_email_here
+STEPIK_PASSWORD=your_password_here@
+CLIENT_ID=your_oauth_client_id_here
+CLIENT_SECRET=your_oauth_client_secret_here
+BSTACK_USERNAME=your_bstack_login_here
+BSTACK_ACCESSKEY=your_bstack_key_here
 ```
-> Для локального запуска необходимо выполнить:
+
+2) Для локального запуска необходимо выполнить:
 ```
 python -m venv .venv
 source .venv/bin/activate

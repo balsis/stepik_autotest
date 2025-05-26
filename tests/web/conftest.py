@@ -5,9 +5,12 @@ from selenium import webdriver
 
 from config import project_config
 from data.credentials_data import SelenoidData, UserData
+from helpers.logger import setup_logger
 from helpers.web import ui_attach
 from helpers.web.auth_helper import AuthHelper
 
+
+logger = setup_logger(__name__)
 
 @allure.step("Запуск браузера")
 @pytest.fixture(scope = 'function', autouse = True)
@@ -67,6 +70,6 @@ def authorized_user(browser_management):
         browser.driver.add_cookie({"name": "csrftoken", "value": csrftoken})
         browser.driver.add_cookie({"name": "sessionid", "value": sessionid})
     except Exception as e:
-        print(f"Не удалось установить cookie - {e}")
+        logger.error(f"Не удалось установить cookie - {e}")
     browser.driver.refresh()
     yield browser
